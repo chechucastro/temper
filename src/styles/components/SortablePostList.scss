@@ -1,0 +1,30 @@
+// Main scss file for SortablePostList component
+
+  ul { // The list block
+		background-color: transparent;
+		&.list {
+			li{
+				background-color: #fff;
+				margin: 2rem 0;
+				min-height: 80px;
+			}
+		}
+		&.actions { // The Actions block
+			button {
+				background-color: #08FB85;
+			}
+		}
+  }
+  .arrow-up {
+		width: 30px;
+		height: 30px;
+		background-repeat: no-repeat;
+		background-image: url('data:image/svg+xml, %3Csvg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 cursor-pointer mb-6" viewBox="0 0 20 20" fill="currentColor" %3E%3Cpath fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" /%3E%3C/svg%3E');
+  }
+	.arrow-down {
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		background-repeat: no-repeat;
+		background-image: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5 cursor-pointer' viewBox='0 0 20 20' fill='currentColor' %3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+	}

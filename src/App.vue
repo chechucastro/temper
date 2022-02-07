@@ -1,28 +1,25 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="deco-outer">
+      <div class="deco-inner"></div>
+      <!-- Sortable view page -->
+      <sortable-view />
+      <!-- Notifications -->
+      <NotificationErrors />
+    </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+// Imports
+import SortableView from '@/views/SortablePostList/SortablePostList.vue'
+import NotificationErrors from '@/components/sharedComponents/NotificationErrors'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    SortableView,
+    NotificationErrors
   }
 }
 </script>
-
+<!-- Main css entry point -->
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import '@/styles/main.scss';
 </style>

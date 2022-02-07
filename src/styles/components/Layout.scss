@@ -1,0 +1,23 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+.deco-outer {
+  position: relative;
+  background: #F6F6F6;
+}
+.deco-outer::before {
+  position: absolute;
+  top: 0;
+  border-top: solid 187px #6357B5;
+  border-right: 100vw solid rgba(0, 0, 0, 0);
+  content: '';
+}
+.deco-inner {
+  height: 100px;
+  padding: 60px 1em;
+  background: #F6F6F6;
+}
