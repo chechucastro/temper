@@ -2,7 +2,7 @@
   <div>
     <transition-group tag="ul" class="list" name="the-list" v-if="postList.length">
       <li class="flex justify-between p-2 rounded" v-for="(post, index) in postList" :key="post.id">
-        <span class="flex items-center">{{index }} - Post {{ post.id }}</span>
+        <span class="flex items-center">Post {{ post.id }}</span>
         <!-- Arrows -->
         <div class="arrows">
           <!--Arrow up -->
