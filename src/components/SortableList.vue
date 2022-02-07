@@ -29,7 +29,6 @@ export default {
   methods: {
     getPostList () {
       Services.getSortablePost().then((posts) => {
-        console.log(posts)
         this.posts = posts
       })
     },
