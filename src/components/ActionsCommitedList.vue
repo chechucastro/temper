@@ -31,7 +31,6 @@ export default {
   },
   data () {
     return {
-      component: 'noActions',
       hasActions: false,
       actionList: []
     }
