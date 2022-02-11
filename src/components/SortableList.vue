@@ -1,26 +1,17 @@
 <template>
   <div>
-    <transition-group tag="ul" class="list" name="the-list" v-if="postList.length">
-      <li class="flex justify-between p-2 rounded" v-for="(post, index) in postList" :key="post.id">
-        <span class="flex items-center">Post {{ post.id }}</span>
-        <!-- Arrows -->
-        <div class="arrows">
-          <!--Arrow up -->
-          <div class="arrow-up" v-if="index > 0"
-               @click="arrayMover({currentPostId: post.id, fromIndex: index, toIndex: index-1})"></div>
-          <!-- Arrow down -->
-          <div class="arrow-down" v-if="index < postList.length-1"
-               @click="arrayMover({currentPostId: post.id, fromIndex: index, toIndex: index+1})"></div>
-        </div>
-      </li>
-    </transition-group>
+    <ArrowMover :postList="postList" />
   </div>
 </template>
 <script>
+import ArrowMover from '@/components/sharedComponents/ArrowMover'
 import { EventBus } from '@/declarations/eventBus'
 import { Services } from '@/service/Services'
 export default {
   name: 'SortablePostList',
+  components: {
+    ArrowMover
+  },
   data () {
     return {
       posts: []
@@ -33,6 +24,7 @@ export default {
       })
     },
     arrayMover (params, isRewind = false) {
+      console.log(params)
       const arr = this.posts
       const { currentPostId, fromIndex, toIndex } = params
       const payload = { currentPostId, fromIndex, toIndex }
@@ -54,6 +46,11 @@ export default {
     this.getPostList()
     EventBus.$on('rewindAction', (payload) => {
       this.arrayMover(payload, true)
+    })
+  },
+  mounted () {
+    this.$root.$on('move-arrow', (payload) => {
+      this.arrayMover(payload)
     })
   }
 }
