@@ -1,38 +1,23 @@
 <template>
   <div>
-    <!-- If actions exist -->
-    <transition-group tag="ul" class="divide-y-2 divide-gray-100 actions" name="fade" v-if="actionList.length">
-      <li class="flex justify-between p-3 bg-white" v-for="(action, index) in actionList" :key="index">
-        <span class="flex items-center">Moved post {{ action.currentPostId }} from index {{ action.fromIndex }} to index {{ action.toIndex }}</span>
-        <span class="actions">
-          <button ref="time-travel" class="time-travel rounded py-2 px-4 text-black" @click="timeTravel({currentIndex: index, currentAction: action})">Time travel</button>
-        </span>
-      </li>
-    </transition-group>
-    <!-- No actions showing up -->
-    <transition name="fadeout" v-else-if="!hasActions">
-      <div class="flex justify-center items-center">
-        <div class="font-bold h-56 grid grid-cols-1 content-center">
-          <!-- Watch svg animation -->
-          <WatchLoading />
-          <p class="text-black text-center">No actions commited yet!</p>
-        </div>
-      </div>
-    </transition>
+    <component :is="changeComponent" :actionList="actionList"/>
   </div>
 </template>
 <script>
+import ActionsItems from '@/components/sharedComponents/ActionsItems'
+import NoItemsInList from '@/components/sharedComponents/NoItemsInList'
 import { EventBus } from '@/declarations/eventBus'
-import WatchLoading from '@/components/sharedComponents/Loader'
 export default {
   name: 'ActionsCommittedList',
   components: {
-    WatchLoading
+    ActionsItems,
+    NoItemsInList
   },
   data () {
     return {
       hasActions: false,
-      actionList: []
+      actionList: [],
+      component: 'NoItemsInList'
     }
   },
   methods: {
@@ -59,6 +44,16 @@ export default {
         fromIndex: fromIndex,
         toIndex: toIndex
       })
+    })
+  },
+  computed: {
+    changeComponent () {
+      return (this.actionList.length) ? 'ActionsItems' : 'NoItemsInList'
+    }
+  },
+  mounted () {
+    this.$root.$on('time-travel', (payload) => {
+      this.timeTravel(payload)
     })
   }
 }
