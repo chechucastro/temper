@@ -37,8 +37,6 @@ export default {
   computed: {
     postList () {
       // 1. Display the first 5 posts
-      // It could be done with slice if we care about a "non consecutive" id's (here id's are from 1 to 100)
-      // Ex: this.posts.slice(0, 5)
       return this.posts.filter(post => post.id < 6)
     }
   },
@@ -61,13 +59,11 @@ export default {
     backface-visibility: hidden;
     z-index: 1;
   }
-
   /* moving */
   .the-list-move {
     transition: all 600ms ease-in-out 50ms;
   }
-
-  /* appearing */
+    /* appearing */
   .the-list-enter-active {
     transition: all 400ms ease-out;
   }
